@@ -10,6 +10,7 @@ const SearchBar = ({data, onChange, onSubmit}) => {
         value={data} 
         onChangeText={ onChange}
         onEndEditing={ onSubmit}
+        autoCapitalize="none"
     />
  </View>
  );
