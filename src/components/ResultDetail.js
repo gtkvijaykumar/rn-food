@@ -13,7 +13,7 @@ const ResultDetail = ({result}) => {
 
 const styles = StyleSheet.create({
     viewStyle : {
-        marginRight : 10
+        marginHorizontal : 10
     },
     textStyle : {
         fontWeight : 'bold',

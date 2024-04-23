@@ -5,7 +5,7 @@ import { FlatList } from "react-native-gesture-handler";
 import useResults from "../hooks/useResults";
 import ResultsList from "../components/ResultsList";
 
-const SearchScreen = () => {
+const SearchScreen = ({navigation}) => {
    const [term, setTerm] = useState('');
    const [searchApi,results,errMsg] = useResults();
 
@@ -13,21 +13,21 @@ const SearchScreen = () => {
       return results.filter( res => res.price == price);
    };
 
- return (<View style={styles.viewStyle}>
+ return (
+ <>
       <SearchBar 
          data={term} 
          onChange = { newTerm => setTerm(newTerm)}
          onSubmit = { () => searchApi()} >
       </SearchBar>
       { errMsg ? <Text>{errMsg}</Text> : null}
-    <Text >Found {results.length} results</Text>
     <ScrollView>
-      <ResultsList results = {filterResultsByPrice("$")} title="Cost Effective"/>
-      <ResultsList results = {filterResultsByPrice("$$")} title="Bit Pricier" />
-      <ResultsList results = {filterResultsByPrice("$$$")} title="Big Spender" />
+      <ResultsList navigation={navigation} results = {filterResultsByPrice("$")} title="Cost Effective"/>
+      <ResultsList navigation={navigation} results = {filterResultsByPrice("$$")} title="Bit Pricier" />
+      <ResultsList navigation={navigation} results = {filterResultsByPrice("$$$")} title="Big Spender" />
     </ScrollView>
 
- </View>
+ </>
  );
 };
 
